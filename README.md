@@ -2,7 +2,7 @@
 
 > **多路径 OSINT 企业调查**：竞争对手分析、产业链上下游追踪、资本关系挖掘与市场地位智能评估
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Version](https://img.shields.io/badge/Version-9.5-blue.svg)](https://github.com/hxd0818/company-chain-investigate)
 
 ---
@@ -218,7 +218,7 @@ Phase N: 十步迭代循环
 
 ## 📄 License
 
-MIT License — 详见 [LICENSE](LICENSE)
+Apache License 2.0 — 详见 [LICENSE](LICENSE)
 
 ## 🤝 贡献
 
