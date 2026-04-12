@@ -1,9 +1,9 @@
-# 🏢 Company Chain Investigate — OSINT 企业调查 Skill
+# 🔍 OpenProbe — OSINT 公开信息企业深度调查
 
-> **多路径 OSINT 企业调查**：竞争对手分析、产业链上下游追踪、资本关系挖掘与市场地位智能评估
+> **基于公开信息的数据挖掘**：企业背景调查、竞争对手分析、产业链上下游追踪、资本关系挖掘与市场地位智能评估
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Version](https://img.shields.io/badge/Version-9.5-blue.svg)](https://github.com/hxd0818/company-chain-investigate)
+[![Version](https://img.shields.io/badge/Version-9.5-blue.svg)](https://github.com/hxd0818/openprobe)
 
 ---
 
@@ -59,8 +59,8 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/hxd0818/company-chain-investigate.git
-cd company-chain-investigate
+git clone https://github.com/hxd0818/openprobe.git
+cd openprobe
 
 # 安装依赖
 pip install -r requirements.txt  # 如有
@@ -92,7 +92,7 @@ python3 scripts/investigate-v7.py "公司名" --query "q1" "q2" --pdf
 ## 📁 项目结构
 
 ```
-company-chain-investigate/
+openprobe/
 ├── SKILL.md                          # Skill 主文件（Agent 入口）
 ├── README.md                         # 本文件
 ├── .gitignore                        # 排除运行时 data/
