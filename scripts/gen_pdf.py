@@ -40,11 +40,24 @@ S.add(ParagraphStyle(name='Body', fontName='WQY', fontSize=9.5, leading=15,
     spaceBefore=2, spaceAfter=2))
 S.add(ParagraphStyle(name='Quote', fontName='WQY', fontSize=9, leading=13,
     textColor=colors.HexColor('#555555'), leftIndent=12, spaceBefore=3, spaceAfter=3))
-S.add(ParagraphStyle(name='CodeB', fontName='Courier', fontSize=7.5, leading=10,
+S.add(ParagraphStyle(name='CodeB', fontName='WQY', fontSize=7.5, leading=10,
     textColor=colors.HexColor('#666666'), backColor=colors.HexColor('#f5f5f5'),
     leftIndent=6, spaceBefore=2, spaceAfter=2))
 
 # ========== 解析Markdown → ReportLab Elements ==========
+def _safe_bold(text):
+    """将 **text** 转为 <b>text</b>，同时安全转义其余HTML特殊字符"""
+    t = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', text)
+    parts = re.split(r'(</?b>)', t)
+    out = []
+    for p in parts:
+        if p in ('<b>', '</b>'):
+            out.append(p)
+        else:
+            out.append(p.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;'))
+    return ''.join(out)
+
+
 def md_to_elements(md_path):
     """将Markdown文件解析为ReportLab可渲染元素列表"""
     md_text = open(md_path, encoding='utf-8').read()
@@ -109,21 +122,21 @@ def md_to_elements(md_path):
         # H1
         if line.startswith('# ') and not line.startswith('## '):
             flush_table()
-            t = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', line[2:].strip())
+            t = _safe_bold(line[2:].strip())
             story.append(Paragraph(t, S['H1C']))
             continue
 
         # H2
         if line.startswith('## '):
             flush_table()
-            t = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', line[3:].strip())
+            t = _safe_bold(line[3:].strip())
             story.append(Paragraph(t, S['H2S']))
             continue
 
         # H3
         if line.startswith('### '):
             flush_table()
-            t = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', line[4:].strip())
+            t = _safe_bold(line[4:].strip())
             story.append(Paragraph(t, S['H3S']))
             continue
 
@@ -137,17 +150,22 @@ def md_to_elements(md_path):
 
         # Blockquote
         if line.startswith('> '):
-            t = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', line[2:])
+            t = _safe_bold(line[2:])
             story.append(Paragraph(t, S['Quote']))
             continue
 
         # Body text
         if line.strip():
             clean = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', line)
+            # 先保护<b>标签，再转义其余HTML特殊字符，最后恢复<b>
             clean = clean.replace('&', '&amp;')
-            clean = clean.replace('<b>', '<TMPB>').replace('</b>', '</TMPB>')
-            clean = clean.replace('<', '&lt;').replace('>', '&gt;')
-            clean = clean.replace('<TMPB>', '<b>').replace('</TMPB>', '</b>')
+            _bold_parts = []
+            for part in re.split(r'(</?b>)', clean):
+                if part in ('<b>', '</b>'):
+                    _bold_parts.append(part)
+                else:
+                    _bold_parts.append(part.replace('<', '&lt;').replace('>', '&gt;'))
+            clean = ''.join(_bold_parts)
             story.append(Paragraph(clean, S['Body']))
         else:
             story.append(Spacer(1, 3))
