@@ -36,8 +36,8 @@ data/{公司名}/
 ├── capital_graph.json             # ⭐ 资本关系图谱
 ├── round_logs/                    # ⭐ 轮次日志
 │   └── round_N.json               # 每轮一个文件
-├── report.html                    # HTML报告（--pdf时生成）
-└── report.pdf                     # PDF报告
+├── report.md                      # Markdown报告（Agent撰写）
+├── report.pdf                     # PDF报告（gen_pdf.py生成）
 ```
 
 ## 2. status.json — 调查状态中枢
@@ -158,8 +158,18 @@ Phase 0 初始化后创建，后续轮次持续更新。
     "founded": "成立时间",
     "stock_code": "股票代码",
     "shareholders": ["主要股东"],
-    "headquarters": "总部地址",
-    "main_domain": "主域名"
+    "headquarters": "总部地址（详细到省市区街道门牌）",
+    "main_domain": "主域名/官网URL"
+  },
+  "contact_info": {
+    "phone": {"general": "总机/客服电话", "hotline": "服务热线(如有)", "fax": "传真号码"},
+    "email": {"general": "公开邮箱(如info@/contact@)", "business": "商务合作邮箱", "hr": "招聘邮箱", "media": "媒体/PR联系邮箱"},
+    "address": {"hq": "总部详细地址", "branches": [{"city": "城市", "address": "分公司/办事处地址"}]},
+    "website": {"official": "官网URL", "recruit": "招聘页面URL", "news": "新闻中心/媒体入口URL"},
+    "social_media": {"wechat": "微信公众号名称", "weibo": "微博官方账号", "douyin": "抖音号", "linkedin": "领英主页", "xiaohongshu": "小红书号"},
+    "customer_service": {"platform": "在线客服平台(如微信公众号/APP内)", "worktime": "客服工作时间"},
+    "investor_relations": {"phone": "投资者关系电话", "email": "IR邮箱", "page": "IR专栏URL(上市公司)"},
+    "other_channels": ["其他公开联系方式"]
   },
   "confidence": 85,
   "last_updated": "2026-04-05T10:30:00+08:00"
