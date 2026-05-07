@@ -39,11 +39,13 @@ python3 scripts/investigate-v7.py "公司名" --baike
 --engine baidu      # 百度AI搜索（默认）
 --engine baike      # 仅百科（快速起点）
 
-# PDF报告
-python3 scripts/investigate-v7.py "公司名" --query "q1" "q2" --pdf
+# PDF报告（⭐reportlab方案，唯一可靠方式）
+python3 scripts/gen_pdf.py data/公司名/report.md [output.pdf]
 ```
 
-输出目录：`data/{公司名}/raw/*.txt` + `report.html` + `report.pdf`
+输出目录：`data/{公司名}/raw/*.txt` + `report.md` + `report.pdf`
+
+> ⚠️ **PDF生成必须使用 `scripts/gen_pdf.py`（基于reportlab）**，禁止使用Chrome headless/weasyprint/browser tool的PDF功能（均不可靠：Chrome依赖HTTP服务存活+调试端口，weasyprint在Python 3.6有FFI bug）。gen_pdf.py自动提取中文字体(wqy-microhei.ttc→TTF)，支持Markdown表格/代码块/引用等完整语法。
 
 ## 限流规则（硬性）
 
