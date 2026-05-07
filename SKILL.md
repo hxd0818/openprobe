@@ -94,26 +94,36 @@ Phase N: 迭代循环（每轮十步，详见 methodology.md §4）
 
 每轮根据缺口选重点，不必每轮都覆盖三个维度。
 
-## 导航索引
+## 🚀 执行入口（必读顺序）
 
-| 文件 | 内容 |
-|------|------|
-| `references/methodology.md` | 螺旋迭代状态机（Phase 0/十步迭代/收敛/行业自适应） |
-| `references/entity-tier-strategy.md` | ⭐⭐ **种子池管理 + 实体分层策略 v9.5**（Tier 1深挖/Tier2快照/Tier3占位） |
-| `references/data-quality-gate.md` | ⭐⭐⭐ **数据质量门禁 v9.3**（时效强制门槛+时效分级+缺口决策树+推算规范） |
-| `references/people-research.md` | 高管与关键人物调研（v9新增） |
-| `references/competitor-research.md` | 竞争对手调研（v9.3 Agent自主推理：商业边界→竞争域→自适应发现） |
-| `references/supply-chain.md` | 产业链上下游调研（v9.2 Agent自主推理：图谱→节点→自主规划策略） |
-| `references/capital-research.md` | 资本关系调研（股权/高管/投资事件） |
-| `references/pir-template.md` | ⭐⭐ **PIR模板与收敛框架**（v9.1核心，需求驱动收敛） |
-| `references/output-specs.md` | 产出物JSON格式规范（§1-10：目录结构/JSON模板/复用机制） |
-| `references/report-writing-guide.md` | ⭐⭐ 报告撰写标准与自检清单（写作铁律+对比铁律+v9.2数据质量门禁检查） |
-| `references/analyst-identity.md` | ⭐⭐ 分析师身份与职业规范（Agent身份定义，必读） |
+```
+① SKILL.md（本文件 — 工具用法 + 限流规则）
+② references/CHECKLIST.md ← ⭐⭐⭐ 唯一执行手册，每轮对照打勾
+③ 其他reference文件 — 按需查阅（遇到具体问题时再看）
+```
+
+> **⚠️ 核心变革 v10**：不再要求先读11个reference文件才开始调查。
+> **CHECKLIST.md 是唯一必须完整阅读的文件**——它浓缩了所有方法论的可执行步骤。
+> 其他reference文件是"论文库"：当你需要理解"为什么这样做"或遇到特定问题时查阅。
+
+### 文件导航（按需查阅）
+
+| 文件 | 何时查阅 | 内容 |
+|------|---------|------|
+| **`references/CHECKLIST.md`** | **⭐ 每轮必读** | 执行检查清单（Phase 0 / 十步迭代 / 收敛判断 / 违规速查） |
+| `references/methodology.md` | 需要理解迭代原理时 | 状态机详细说明 / status.json完整schema / 行业自适应 |
+| `references/pir-template.md` | 设计PIR问题时 | PIR四层结构 / 置信度评估方法 |
+| `references/output-specs.md` | 写JSON产出物时 | 格式规范 / profile.json模板(含contact_info) |
+| `references/report-writing-guide.md` | 撰写报告时 | 写作铁律 / 对比铁律 / 自检清单 |
+| `references/analyst-identity.md` | 身份心态偏离时 | 分析师身份定义 / 5条分析铁律 / 错误清单 |
+| `references/data-quality-gate.md` | 处理数据时效/缺失时 | 时效门槛 / 推算规范 / 缺口决策树 |
+| `references/entity-tier-strategy.md` | 种子池管理复杂时 | Tier分层 / 选种策略 / 扩散模式 |
+| `references/competitor-research.md` | 深挖竞对时 | 商业边界→竞争域推理框架 |
+| `references/supply-chain.md` | 深挖产业链时 | 图谱→节点→规划策略 |
+| `references/capital-research.md` | 深挖资本关系时 | 股权/融资/高管追踪方法 |
+| `references/people-research.md` | 深挖关键人物时 | 高管画像/关联挖掘框架 |
 
 > ⚠️ **质量门禁体系（三级，违反任一 = 报告不合格）**：
-> 1. **v9.1 数据对比铁律**：跨实体数值对比必须时间口径对齐（→ `output-specs.md` §11.6）
-> 2. **v9.2 数据质量门禁**：时效分级(🟢🟡🟠🔴) + 缺口决策树 + 推算闭环（→ `data-quality-gate.md`；自检项 → `report-writing-guide.md` §8.7）
-> 3. **v9 PIR驱动收敛**：终止条件是"关键问题是否已答"，非数轮次/数实体（→ `pir-template.md` + `methodology.md` §5）
-
-> 🎓 **执行前必读**：`references/analyst-identity.md` — 以"资深产业研究员"身份开展工作。
-> 📋 **完整文件导航**：见上方「导航索引」表（11个reference文件，按需加载）。
+> 1. **数据对比铁律**：跨实体数值对比必须时间口径对齐（→ `output-specs.md` §11.6）
+> 2. **数据质量门禁**：时效分级(🟢🟡🟠🔴) + 推算闭环（→ `data-quality-gate.md`）
+> 3. **PIR驱动收敛**：终止条件是"关键问题是否已答"，非数轮次（→ CHECKLIST.md §Phase N Step ⑩）
